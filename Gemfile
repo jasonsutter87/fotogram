@@ -5,6 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+
 # Use faker gem to generate fake data
 gem 'faker'
 # Use the devise gem for user information
