@@ -1,0 +1,6 @@
+<% @photos.each do |photo| %>
+  Id: <%= photo.id %>,
+  Url:  <%= photo.url %>,
+  Photo: <img src="<%= photo.url %>" height="75" width="75">
+  <br>
+<% end %>

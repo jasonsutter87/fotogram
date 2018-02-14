@@ -1,0 +1,7 @@
+<% @comments.each do |comment| %>
+  Id: <%= comment.id %>,
+  User_id: <%= comment.user_id %>,
+  Post_id:  <%= comment.post_id %>,
+  Comment: <%= comment.comment %>
+  <br>
+<% end %>
