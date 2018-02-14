@@ -1,6 +1,7 @@
 <% @posts.each do |post| %>
 Id: <%= post.id %>,
 Photo_id: <%= post.photo_id %>,
+User_id: <%= post.user_id %>,
 Photo: <img src="<%= Photo.find_by(id: post.photo_id).url %>" height="75" width="75">,
 Filter_id:<%= post.filter_id %>,
 Filter_opacity: <%= post.filter_opacity %>,

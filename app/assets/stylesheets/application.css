@@ -13,3 +13,78 @@
  *= require_tree .
  *= require_self
  */
+
+nav{
+  background-color: white;
+  border-style: solid;
+  border-width: 0px 0px 1px 0px;
+  border-color: #e6e6e6;
+}
+
+body{
+  background-color: #fafafa;
+}
+
+.companyTitle{
+  font-family: 'Leckerli One', cursive;
+}
+
+.navleft{
+  padding-left: 10%;
+}
+
+
+.navright{
+  padding-right: 10%;
+}
+
+.bodyleft{
+  padding-left: 10%;
+}
+
+
+.bodyright{
+  padding-right: 6%;
+}
+
+.buttons{
+  display: inline-block;
+  border: none;
+  background: none;
+}
+
+.postdiv{
+  background-color: white;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  border-style: solid;
+  border-width: 1px 1px 1px 1px;
+  border-color: #e6e6e6;
+}
+
+.postAuthor{
+  text-decoration: none;
+}
+
+.postBorderBottom{
+  border-style: solid;
+  border-width: 0px 0px 1px 0px;
+  border-color: #e6e6e6;
+}
+
+.postAuthor > img{
+  height: 35px;
+  width: 35px;
+}
+
+.postAuthor > a{
+  font-weight: bold;
+  text-decoration: none;
+  color: black;
+}
+
+.postAuthor{
+  font-weight: bold;
+  display: inline-block;
+  color: black;
+}
