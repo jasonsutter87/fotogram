@@ -1,3 +1,4 @@
 class Photo < ApplicationRecord
-  belongs_to :photable, polymorphic: true
+  belongs_to :user
+  belongs_to :post
 end

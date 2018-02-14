@@ -1,5 +1,5 @@
 class Post < ApplicationRecord
-  has_many :photos, as: :photoable
+  has_many :photos
 
   has_and_belongs_to_many :users
 

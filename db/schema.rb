@@ -49,15 +49,14 @@ ActiveRecord::Schema.define(version: 20180213202049) do
   end
 
   create_table "photos", force: :cascade do |t|
-    t.string   "photoable_type"
-    t.integer  "photoable_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.index ["photoable_type", "photoable_id"], name: "index_photos_on_photoable_type_and_photoable_id", using: :btree
+    t.string   "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "posts", force: :cascade do |t|
     t.integer  "filter_id"
+    t.integer  "photo_id"
     t.float    "filter_opacity"
     t.text     "description"
     t.string   "location"
@@ -77,6 +76,7 @@ ActiveRecord::Schema.define(version: 20180213202049) do
     t.string   "name",                   default: "", null: false
     t.string   "username",               default: "", null: false
     t.text     "bio",                    default: "", null: false
+    t.integer  "photo_id"
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -92,6 +92,7 @@ ActiveRecord::Schema.define(version: 20180213202049) do
     t.index ["bio"], name: "index_users_on_bio", using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["name"], name: "index_users_on_name", using: :btree
+    t.index ["photo_id"], name: "index_users_on_photo_id", using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
     t.index ["username"], name: "index_users_on_username", unique: true, using: :btree
   end
