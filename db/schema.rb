@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 20180213202049) do
   create_table "posts", force: :cascade do |t|
     t.integer  "filter_id"
     t.integer  "photo_id"
+    t.integer  "user_id"
     t.float    "filter_opacity"
     t.text     "description"
     t.string   "location"
