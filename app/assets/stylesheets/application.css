@@ -88,3 +88,52 @@ body{
   display: inline-block;
   color: black;
 }
+
+
+
+.welcomeHeader{
+  text-align: center;
+  padding-top: 15%;
+}
+
+.welcomeBody{
+  text-align: center;
+  padding: 4%;
+  background-color: snow;
+  color: black;
+  margin-right: 25%;
+  margin-left: 25%;
+  border-radius: 15px;
+}
+
+.welcomeButton{
+  color: white;
+  background-color: #1166d0;
+  border-radius: 10px;
+  padding: 2%;
+}
+
+
+.backgroundUserSignedIn{
+  background-color: white;
+}
+
+.backgroundUserSignedOut{
+  background-color: #1166d0;
+  color: white;
+}
+
+
+.white{
+  color: white;
+  padding-left: 20px;
+}
+
+.title{
+  font-family: 'Leckerli One', cursive;
+}
+
+.subtitle{
+  font-family: 'Josefin Sans', sans-serif;
+
+}

@@ -1,0 +1,56 @@
+<% if user_signed_in? %>
+<div class="bodyleft bodyright ">
+    <% @posts.each do |post| %>
+      <% if @user.id ==  post.user_id%>
+      <div class='postdiv'>
+        <div class="postBorderBottom">
+          <span class="postAuthor">
+            <img src="<%= Photo.find_by(id: User.find_by(id: Photo.find_by(id: post.user_id).id).photo_id).url %>">
+          </span>
+          <span class="postAuthor">
+            <a href="/users/<%= User.find_by(id: Photo.find_by(id: post.user_id).id).id %>"><%= User.find_by(id: post.user_id).username %></a>
+          </span>
+        </div>
+
+        <div>
+          <img src="<%= Photo.find_by(id: post.photo_id).url %>" height="75" width="75">
+        </div>
+
+        <div>
+          <span><a class="nav-link buttons" ><i class="far fa-heart"></i></a></span>
+          <span><a class="nav-link buttons" ><i class="far fa-comment"></i></a></span>
+        </div>
+
+          <div>
+            <% likecount = [] %>
+            <% @likes.each do |like| %>
+              <% if like.post_id == post.id  %>
+                <% likecount << like.user_id %>
+              <% end %>
+            <% end %>
+            <%= likecount.length %> Likes
+            <% likecount = [] %>
+          </div>
+          <div>
+            <% commentscount = [] %>
+              <% @comments.each do |comment| %>
+                <% if comment.post_id == post.id  %>
+                  <p class="postAuthor"><%=  User.find_by(id: comment.user_id).username %></p>
+                  <%=  comment.comment %>
+                  <br>
+                <% end %>
+            <% end %>
+          </div>
+          </div>
+      <% end %>
+<% end %>
+<% else %>
+  <div class='welcomeHeader'>
+    <h1 class="title"><i class="fas fa-camera-retro"></i> | Fotogram</h1>
+    <h3 class="subtitle">PLEASE LOG IN</h3>
+  </div>
+  <div class='welcomeBody'>
+    <%= link_to "Sign In", user_session_path(@user), { :class=>"welcomeButton" } %> or
+    <%= link_to "Sign Up", new_user_registration_path(@user), { :class=>"welcomeButton" } %>
+  </div>
+<% end %>
