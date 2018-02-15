@@ -16,7 +16,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css?family=Leckerli+One" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Advent+Pro|Leckerli+One" rel="stylesheet">
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -44,6 +44,14 @@
              </ul>
 
              <ul class="nav navbar-nav pr-5 navright">
+
+               <% if @user && @user.id == current_user.id %>
+                <!-- userSettings -->
+                <li class="nav-item active" data-toggle="modal" data-target="#settingModal">
+                  <a class="nav-link" href="/users/edit"><i class="fas fa-cog"></i></a>
+                </li>
+               <% end %>
+
                  <!-- discover -->
                  <li class="nav-item active">
                    <a class="nav-link" href="#"><i class="far fa-compass"></i></a>
@@ -58,14 +66,9 @@
                  <li class="nav-item active">
                    <a class="nav-link" href="/users/<%= current_user.id %>"><i class="far fa-user"></i></a>
                  </li>
-
-                 <li class="nav-item">
-                   <%= link_to "Logout", destroy_user_session_path, :class => "glyphicon glyphicon-log-in", :method => "delete" %>
-                 </li>
                </ul>
            </div>
          </nav>
-
 
          <!-- Modal -->
          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -82,6 +85,7 @@
        <body class="backgroundUserSignedOut">
        <% end %>
        <%= yield %>
+
 
 
        <!-- Font Awesome CDN -->

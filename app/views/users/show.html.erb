@@ -24,23 +24,31 @@
 
 <div class="bodyleft bodyright ">
   <div class="displayPhoto">
-    <img src="<%= Photo.find_by(id: @user.photo_id).url %>" height="75" width="75">
+
+    <% if @user.photo_id !=  nil %>
+      <img src="<%= Photo.find_by(id: @user.photo_id).url %>" height="75" width="75">
+    <% else %>
+      <img src="https://robohash.org/'+#{ @user.username}+'?set=set3>" height="75" width="75">
+    <% end %>
+
+
   </div>
   <div class="userInfo">
     <div>
       <span class="userName"><%= @user.username %></span>
-      <span class="pad5">settings</span>
     </div>
     <div>
-      <span><%=  postCount %> Posts</span>
-      <span class="pad5"><%= followerCount %> Followers</span>
-      <span class="pad5"><%= followingCount  %> Following</span>
+      <span><span class='strong'><%=  postCount %></span><span> Posts</span></span>
+      <span class="pad5"><span class='strong'><%= followerCount %></span><span> Followers</span></span>
+      <span class="pad5"><span class='strong'><%= followingCount  %></span><span> Following</span></span>
     </div>
     <div>
       <p><%= @user.name %></p>
     </div>
   </div>
 </div>
+
+
 
 <div class="bodyleft bodyright ">
     <% @posts.each do |post| %>
@@ -78,7 +86,7 @@
             <% commentscount = [] %>
               <% @comments.each do |comment| %>
                 <% if comment.post_id == post.id  %>
-                  <p class="postAuthor"><%=  User.find_by(id: comment.user_id).username %></p>
+                  <a class="postAuthor" href="/users/<%=  User.find_by(id: comment.user_id).id %>"><%= User.find_by(id: comment.user_id).username %></a>
                   <%=  comment.comment %>
                   <br>
                 <% end %>
@@ -87,6 +95,9 @@
           </div>
       <% end %>
 <% end %>
+
+
+
 <% else %>
   <div class='welcomeHeader'>
     <h1 class="title"><i class="fas fa-camera-retro"></i> | Fotogram</h1>
