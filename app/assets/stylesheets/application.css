@@ -21,9 +21,6 @@ nav{
   border-color: #e6e6e6;
 }
 
-body{
-  background-color: #fafafa;
-}
 
 .companyTitle{
   font-family: 'Leckerli One', cursive;
@@ -115,14 +112,13 @@ body{
 
 
 .backgroundUserSignedIn{
-  background-color: white;
+  background-color: #fafafa;
 }
 
 .backgroundUserSignedOut{
   background-color: #1166d0;
   color: white;
 }
-
 
 .white{
   color: white;
@@ -136,4 +132,29 @@ body{
 .subtitle{
   font-family: 'Josefin Sans', sans-serif;
 
+}
+
+.displayPhoto{
+  display: inline-block;
+  padding-left: 10%;
+}
+
+
+.displayPhoto > img{
+  height: 150px;
+  width: 150px;
+}
+
+.userInfo{
+  display: inline-block;
+  padding-left: 5%;
+  padding-top: 5%;
+}
+
+.userName{
+  font-size: 2em;
+}
+
+.pad5{
+  padding-left: 15px;
 }

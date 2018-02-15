@@ -1,7 +1,50 @@
 <% if user_signed_in? %>
+<% postCount = 0 %>
+<% @posts.each do |post| %>
+  <% if @user.id ==  post.user_id%>
+    <% postCount += 1 %>
+  <% end %>
+<% end %>
+
+<% followerCount = 0 %>
+<% @connections.each do |connection| %>
+  <% if @user.id ==  connection.follower_id%>
+    <% followerCount += 1 %>
+  <% end %>
+<% end %>
+
+
+<% followingCount = 0 %>
+<% @connections.each do |connection| %>
+  <% if @user.id ==  connection.user_id %>
+    <% followingCount += 1 %>
+  <% end %>
+<% end %>
+
+
+<div class="bodyleft bodyright ">
+  <div class="displayPhoto">
+    <img src="<%= Photo.find_by(id: @user.photo_id).url %>" height="75" width="75">
+  </div>
+  <div class="userInfo">
+    <div>
+      <span class="userName"><%= @user.username %></span>
+      <span class="pad5">settings</span>
+    </div>
+    <div>
+      <span><%=  postCount %> Posts</span>
+      <span class="pad5"><%= followerCount %> Followers</span>
+      <span class="pad5"><%= followingCount  %> Following</span>
+    </div>
+    <div>
+      <p><%= @user.name %></p>
+    </div>
+  </div>
+</div>
+
 <div class="bodyleft bodyright ">
     <% @posts.each do |post| %>
-      <% if @user.id ==  post.user_id%>
+    <% if @user.id ==  post.user_id%>
       <div class='postdiv'>
         <div class="postBorderBottom">
           <span class="postAuthor">
