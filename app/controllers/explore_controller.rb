@@ -1,4 +1,4 @@
-class FeedsController < ApplicationController
+class ExploreController < ApplicationController
   def index
     @likes = Like.all
     @posts = Post.all
