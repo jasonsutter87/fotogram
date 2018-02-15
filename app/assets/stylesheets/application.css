@@ -83,8 +83,35 @@ nav{
 .postAuthor{
   font-weight: bold;
   display: inline-block;
+}
+
+.postCommenter{
+  font-weight: bold;
+  display: inline-block;
+  text-decoration: none;
+  color: black;
+  padding-left: 3%;
+}
+
+.postCommenter > a{
+  font-weight: bold;
+  text-decoration: none;
   color: black;
 }
+
+.postImg{
+  padding-left: 3%;
+}
+
+.postLikes{
+  padding-left: 3%;
+}
+
+.postHeart{
+  padding-left: 1%;
+}
+
+
 
 
 
@@ -166,4 +193,9 @@ nav{
 }
 .settingButton{
   display: inline-block;
+}
+
+.postLocation{
+  font-size: .75em;
+  padding-left: 3%;
 }

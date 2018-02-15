@@ -68,8 +68,8 @@
         </div>
 
         <div>
-          <span><a class="nav-link buttons" ><i class="far fa-heart"></i></a></span>
-          <span><a class="nav-link buttons" ><i class="far fa-comment"></i></a></span>
+          <span class="postHeart"><a class="nav-link buttons" ><i class="far fa-heart"></i></a></span>
+          <span class="postHeart"><a class="nav-link buttons" ><i class="far fa-comment"></i></a></span>
         </div>
 
           <div>
@@ -79,14 +79,14 @@
                 <% likecount << like.user_id %>
               <% end %>
             <% end %>
-            <%= likecount.length %> Likes
+            <p class="postLikes"><%= likecount.length %> Likes</p>
             <% likecount = [] %>
           </div>
           <div>
             <% commentscount = [] %>
               <% @comments.each do |comment| %>
                 <% if comment.post_id == post.id  %>
-                  <a class="postAuthor" href="/users/<%=  User.find_by(id: comment.user_id).id %>"><%= User.find_by(id: comment.user_id).username %></a>
+                  <a class="postCommenter" href="/users/<%=  User.find_by(id: comment.user_id).id %>"><%= User.find_by(id: comment.user_id).username %></a>
                   <%=  comment.comment %>
                   <br>
                 <% end %>

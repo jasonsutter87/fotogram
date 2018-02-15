@@ -3,12 +3,13 @@
     <% @posts.each do |post| %>
       <div class='postdiv'>
         <div class="postBorderBottom">
-          <span class="postAuthor">
+          <span class="postAuthor postImg">
             <img src="<%= Photo.find_by(id: User.find_by(id: Photo.find_by(id: post.user_id).id).photo_id).url %>">
           </span>
           <span class="postAuthor">
             <a href="/users/<%= User.find_by(id: Photo.find_by(id: post.user_id).id).id %>"><%= User.find_by(id: post.user_id).username %></a>
           </span>
+          <p class="postLocation"><%= post.location %></p>
         </div>
 
         <div>
@@ -16,8 +17,8 @@
         </div>
 
         <div>
-          <span><a class="nav-link buttons" ><i class="far fa-heart"></i></a></span>
-          <span><a class="nav-link buttons" ><i class="far fa-comment"></i></a></span>
+          <span class="postHeart"><a class="nav-link buttons" ><i class="far fa-heart"></i></a></span>
+          <span class="postHeart"><a class="nav-link buttons" ><i class="far fa-comment"></i></a></span>
         </div>
 
           <div>
@@ -27,14 +28,14 @@
                 <% likecount << like.user_id %>
               <% end %>
             <% end %>
-            <%= likecount.length %> Likes
+                <p class="postLikes"><%= likecount.length %> Likes</p>
             <% likecount = [] %>
           </div>
           <div>
             <% commentscount = [] %>
               <% @comments.each do |comment| %>
                 <% if comment.post_id == post.id  %>
-                  <p class="postAuthor"><%=  User.find_by(id: comment.user_id).username %></p>
+                  <a class="postCommenter" href="/users/<%=  User.find_by(id: comment.user_id).id %>"><%= User.find_by(id: comment.user_id).username %></a>
                   <%=  comment.comment %>
                   <br>
                 <% end %>
