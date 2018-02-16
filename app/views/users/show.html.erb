@@ -38,9 +38,18 @@
       <span class="userName"><%= @user.username %></span>
     </div>
     <div>
-      <span><span class='strong'><%=  postCount %></span><span> Posts</span></span>
-      <span class="pad5"><span class='strong'><%= followerCount %></span><span> Followers</span></span>
-      <span class="pad5"><span class='strong'><%= followingCount  %></span><span> Following</span></span>
+      <div class='inBlock'>
+        <span class='strong'><%=  postCount %></span>
+        <span> Posts</span>
+      </div>
+      <div class='inBlock'>
+        <span class='strong'><%= followerCount %></span>
+        <span> Followers</span>
+      </div>
+      <div class='inBlock'>
+        <span class='strong'><%= followingCount  %></span>
+        <span> Following</span>
+      </div>
     </div>
     <div>
       <p><%= @user.name %></p>
@@ -49,8 +58,30 @@
 </div>
 
 
+<% if postCount == 0 %>
+  <div class="bodyleft bodyright ">
 
-<div class="bodyleft bodyright ">
+      <div class='postdiv'>
+          <p class='center padDown'>This Users has no posts yet</p>
+      </div>
+    </div>
+
+<% else %>
+
+
+<div class="container">
+  <div class="row">
+      <% Post.where(user_id: @user.id).each do | post | %>
+      <div class="col-lg-4">
+        <img src="<%= Photo.find_by(id: post.photo_id).url %>" height="100%" width="100%">
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+
+  <!-- <div class="bodyleft bodyright ">
     <% @posts.each do |post| %>
     <% if @user.id ==  post.user_id%>
       <div class='postdiv'>
@@ -94,6 +125,10 @@
           </div>
           </div>
       <% end %>
+<% end %>-->
+
+
+
 <% end %>
 
 

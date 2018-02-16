@@ -15,5 +15,5 @@ Rails.application.routes.draw do
   resources :explore, only: :index
 
 
-  root to: "feeds#index"
+  root to: "feed#index"
 end
