@@ -8,7 +8,7 @@
 
 <% followerCount = 0 %>
 <% @connections.each do |connection| %>
-  <% if @user.id ==  connection.follower_id%>
+  <% if @user.id ==  connection.following_id%>
     <% followerCount += 1 %>
   <% end %>
 <% end %>

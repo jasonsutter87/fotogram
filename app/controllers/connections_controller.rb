@@ -5,9 +5,9 @@ class ConnectionsController < ApplicationController
     @connections = Connection.all
   end
 
-  def cerate
+  def create
     @user = User.find(params[:id])
-    Connection.create(user_id: @user.id, follower_id: current_user.id)
+    Connection.create(user_id: current_user.id, following_id: @user.id)
     redirect_to "/users/#{params[:id]}"
   end
 

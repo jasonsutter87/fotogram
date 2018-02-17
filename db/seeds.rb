@@ -5,7 +5,7 @@ end
 
 #Create 25 Connections
 25.times do
-  Connection.create(user_id: rand(1..20), follower_id: rand(10..45))
+  Connection.create(user_id: rand(1..20), following_id: rand(10..45))
 end
 
 #Create 50 Reports
@@ -38,3 +38,12 @@ end
 10.times do
   Filter.create(name: Faker::Lorem.word)
 end
+
+Photo.create(url: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg")
+User.create(name: 'Jason Sutter', username: 'Evilhoodlem' , bio: 'Tacos everyday!',  photo_id: 26, email: 'jasonsutter87@gmail.com', password: '123456' )
+Post.create(user_id: 51, filter_id: rand(1..10), filter_opacity: rand(0.0..1.0).round(2), photo_id: 26, description: Faker::Lorem.sentence, location: Faker::Address.city)
+Connection.create(user_id: 51, following_id: 1)
+Connection.create(user_id: 51, following_id: 5)
+Connection.create(user_id: 51, following_id: 10)
+Connection.create(user_id: 1, following_id: 51)
+Like.create(user_id: 1, post_id: 51)

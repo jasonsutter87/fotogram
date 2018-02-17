@@ -25,9 +25,9 @@ ActiveRecord::Schema.define(version: 20180215072127) do
 
   create_table "connections", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "follower_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "following_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "explores", force: :cascade do |t|

@@ -1,4 +1,24 @@
 <% if user_signed_in? %>
+<div class="container">
+  <div class="row">
+
+  <% Connection.where(user_id: current_user.id).each do |user| %>
+        <% Post.where(user_id: user.following_id).each do |post| %>
+              <% Photo.where(id: post.photo_id).reorder('created_at').each do |photo| %>
+
+
+
+                          <div class="col-lg-4">
+                            <img src="<%= photo.url %>" height="100%" width="100%">
+                          </div>
+
+              <% end %>
+
+        <% end %>
+
+  <% end %>
+</div>
+</div>
 <% else %>
   <div class='welcomeHeader'>
     <h1 class="title"><i class="fas fa-camera-retro"></i> | Fotogram</h1>

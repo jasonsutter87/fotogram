@@ -1,4 +1,4 @@
 class Photo < ApplicationRecord
-  belongs_to :user
-  belongs_to :post
+  belongs_to :user, required: false
+  belongs_to :post, required: false
 end
