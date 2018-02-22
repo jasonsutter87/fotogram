@@ -1,23 +1,59 @@
 <% if user_signed_in? %>
 <div class="container">
-  <div class="row">
+  <div class="bodyleft bodyright">
+    <div class="justify-content-around">
+    <% Connection.where(user_id: current_user.id).each do |user| %>
+          <% Post.where(user_id: user.following_id).each do |post| %>
+            <% Photo.where(id: post.photo_id).reorder('created_at').each do |photo| %>
+                <div class='postdiv'>
+                  <div class="postBorderBottom">
+                      <div class="postBorderBottom">
+                        <span class="postImg">
+                          <a href="/users/<%= post.user_id %>"><img src="<%= Photo.find_by(id: User.find_by(id: post.user_id).photo_id).url %>" height="10%" width="10%"></a>
+                        </span>
+                        <span class="postAuthor">
+                          <a href="/users/<%= post.user_id %>"><%= User.find_by(id: post.user_id).username %></a>
+                        </span>
+                        <p class="postLocation"><%= post.location %></p>
+                      </div>
+                      <div class="col-lg-12">
+                        <img src="<%= photo.url %>" height="100%" width="100%">
+                      </div>
+                    </div>
+                    <div>
+                      <span class="postHeart"><a class="nav-link buttons" ><i class="far fa-heart"></i></a></span>
+                      <span class="postHeart"><a class="nav-link buttons" ><i class="far fa-comment"></i></a></span>
+                    </div>
 
-  <% Connection.where(user_id: current_user.id).each do |user| %>
-        <% Post.where(user_id: user.following_id).each do |post| %>
-              <% Photo.where(id: post.photo_id).reorder('created_at').each do |photo| %>
+                    <div>
+                      <% likecount = [] %>
+                      <% @likes.each do |like| %>
+                        <% if like.post_id == post.id  %>
+                          <% likecount << like.user_id %>
+                        <% end %>
+                      <% end %>
+                          <p class="postLikes"><%= likecount.length %> Likes</p>
+                      <% likecount = [] %>
+                    </div>
+                    <div>
+                      <% commentscount = [] %>
+                        <% @comments.each do |comment| %>
+                          <% if comment.post_id == post.id  %>
+                            <a class="postCommenter" href="/users/<%=  User.find_by(id: comment.user_id).id %>"><%= User.find_by(id: comment.user_id).username %></a>
+                            <%=  comment.comment %>
+                            <br>
+                          <% end %>
+                      <% end %>
+                    </div>
+                    <span class="postTimeAgo">
+                      <%= time_ago_in_words(post.created_at) %> ago
+                    </span>
 
-
-
-                          <div class="col-lg-4">
-                            <img src="<%= photo.url %>" height="100%" width="100%">
-                          </div>
-
-              <% end %>
-
-        <% end %>
-
-  <% end %>
-</div>
+                  </div>
+                <% end %>
+          <% end %>
+    <% end %>
+  </div>
 </div>
 <% else %>
   <div class='welcomeHeader'>
@@ -27,5 +63,6 @@
   <div class='welcomeBody'>
     <%= link_to "Sign In", user_session_path(@user), { :class=>"welcomeButton" } %> or
     <%= link_to "Sign Up", new_user_registration_path(@user), { :class=>"welcomeButton" } %>
+  </div>
   </div>
 <% end %>
