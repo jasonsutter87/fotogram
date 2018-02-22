@@ -13,4 +13,7 @@ class UsersController < ApplicationController
     @comments = Comment.all
     @connections = Connection.all
   end
+
+
+
 end
