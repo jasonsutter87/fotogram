@@ -26,9 +26,9 @@
   <div class="displayPhoto">
 
     <% if @user.photo_id !=  nil %>
-      <!-- <img src="<%#= Photo.find_by(id: @user.photo_id).url %>" height="75" width="75"> -->
+      <img class="roundImage" src="<%= Photo.find_by(id: @user.photo_id).url %>" height="75" width="75">
     <% else %>
-      <img src="https://robohash.org/'+#{ @user.username}+'?set=set3>" height="75" width="75">
+      <img class="roundImage" src="https://robohash.org/'+#{ @user.username}+'?set=set3>" height="75" width="75">
     <% end %>
 
 
@@ -36,7 +36,33 @@
   <div class="userInfo">
     <div>
       <span class="userName"><%= @user.username %></span>
-      <span><%= button_to "Follow", new_connection_path %></span>
+
+      <% if @user.id != current_user.id %>
+      <% following = 'no' %>
+
+      <% Connection.where(user_id: current_user.id ).each do |isFollowing| %>
+        <% if isFollowing.following_id ==  @user.id %>
+        <% following = 'yes' %>
+        <span>
+          <%= button_to "Unfollow", {:controller => :connections,
+          :action => 'destroy', :id => @user.id },  :class => 'btn btn-primary', :method => :delete %>
+        </span>
+        <% end %>
+      <% end %>
+
+      <% if following != 'yes' %>
+      <span>
+        <form action='/connections' method='post'>
+          <fieldset style="display:none">
+            <input type="hidden" name="connection[user_id]"" value="<%= current_user.id %>">
+            <input type="hidden" name="connection[following_id]"" value="<%=  @user.id %>">
+           </fieldset>
+          <button type="submit" class="btn btn-primary">Follow</button>
+        </form>
+      </span>
+      <% end %>
+    <% end %>
+
     </div>
     <div>
       <div class='inBlock'>
@@ -61,27 +87,52 @@
 
 <% if postCount == 0 %>
   <div class="bodyleft bodyright ">
-
       <div class='postdiv'>
           <p class='center padDown'>This Users has no posts yet</p>
       </div>
     </div>
-
 <% else %>
-
 
 <div class="container">
   <div class="row">
       <% Post.where(user_id: @user.id).each do | post | %>
       <div class="col-lg-4">
-        <img src="<%= Photo.find_by(id: post.photo_id).url %>" height="100%" width="100%">
+        <div class="postContainer">
+          <img src="<%= Photo.find_by(id: post.photo_id).url %>" height="100%" width="100%" alt="Avatar" class="imageRoll">
+          <div class="middle">
+            <div class="settingButton">
+              <% likecount = [] %>
+              <% @likes.each do |like| %>
+                <% if like.post_id == post.id  %>
+                  <% likecount << like.user_id %>
+                <% end %>
+              <% end %>
+              <p class="postLikes">
+                <span class='settingButton'><i class="far fa-heart settingButton"></i></span> <%= likecount.length %>
+                <span class='settingButton'></span>
+              </p>
+              <% likecount = [] %>
+            </div>
+            <div class="settingButton">
+              <% commentscount = [] %>
+              <% @comments.each do |comment| %>
+                <% if comment.post_id == post.id  %>
+                  <% commentscount << comment.post_id %>
+                <% end %>
+              <% end %>
+              <p class="postLikes">
+                <span class='settingButton'><i class="far fa-comment settingButton"></i></span> <%= commentscount.length %>
+                <span class='settingButton'></span>
+              </p>
+              <% commentscount = [] %>
+            </div>
+        </div>
+      </div>
       </div>
     <% end %>
   </div>
 </div>
 <% end %>
-
-
 
 <% else %>
   <div class='welcomeHeader'>

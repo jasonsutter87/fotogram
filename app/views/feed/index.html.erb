@@ -21,11 +21,17 @@
                       </div>
                     </div>
                     <div>
-                      <span class="postHeart"><a class="nav-link buttons" ><i class="far fa-heart"></i></a></span>
-                      <span class="postHeart"><a class="nav-link buttons" ><i class="far fa-comment"></i></a></span>
+                      <form class="inBlock" action='/likes' method='post'>
+                        <fieldset style="display:none">
+                          <input type="hidden" name="like[user_id]"" value="<%= current_user.id %>">
+                          <input type="hidden" name="like[post_id]"" value="<%= post.id %>">
+                         </fieldset>
+                        <button type="submit" class="nav-link buttons"><i class="far fa-heart"></i></button>
+                      </form>
+                      <span class="postHeart"><a class="nav-link buttons"  href='#commentField<%= post.id %>' ><i class="far fa-comment"></i></a></span>
                     </div>
 
-                    <div>
+                    <div id="commentField<%= post.id %>" >
                       <% likecount = [] %>
                       <% @likes.each do |like| %>
                         <% if like.post_id == post.id  %>
@@ -48,7 +54,18 @@
                     <span class="postTimeAgo">
                       <%= time_ago_in_words(post.created_at) %> ago
                     </span>
-
+                    <form action='/comments' method='post'>
+                      <fieldset style="display:none">
+                        <input type="hidden" name="comment[user_id]"" value="<%= current_user.id %>">
+                        <input type="hidden" name="comment[post_id]"" value="<%= post.id %>">
+                       </fieldset>
+                      <fieldset class="form-group">
+                        <input type="text" class="form-control"  name="comment[comment]" placeholder="Add a comment...">
+                       </fieldset>
+                       <input  type="submit" name="update" value=" Apply "
+                       style="position: absolute; height: 0px; width: 0px; border: none; padding: 0px;"
+                       hidefocus="true" tabindex="-1"/>
+                      </form>
                   </div>
                 <% end %>
           <% end %>
