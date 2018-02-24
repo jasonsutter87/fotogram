@@ -71,7 +71,7 @@
           <% if post.user_id != current_user.id %>
             <div class="col-lg-4">
               <div class="postContainer">
-                  <img src="<%= Photo.find_by(id: post.photo_id).url %>" alt="Avatar" class="imageRoll">
+                  <a href="/posts/<%= post.id %>"><img src="<%= Photo.find_by(id: post.photo_id).url %>" alt="Avatar" class="imageRoll"></a>
                 <div class="middle">
                   <div class="settingButton">
                     <% likecount = [] %>

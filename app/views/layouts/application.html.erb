@@ -81,7 +81,7 @@
                    <% Post.all.each do |post| %>
                       <% if like.post_id == post.id && post.user_id == current_user.id %>
                          <a class="liker" href="/users/<%= like.user_id %>"><%= User.find_by(id: like.user_id).username %></a>
-                         Likes your photo <img src="<%= Photo.find_by(id: post.photo_id).url %>" height="65px" width="65px">
+                         Likes your photo <a href="/posts/<%= post.id %>"><img src="<%= Photo.find_by(id: post.photo_id).url %>" height="65px" width="65px"></a>
                       <% end %>
                    <% end %>
                  <% end %>

@@ -98,7 +98,7 @@
       <% Post.where(user_id: @user.id).each do | post | %>
       <div class="col-lg-4">
         <div class="postContainer">
-          <img src="<%= Photo.find_by(id: post.photo_id).url %>" height="100%" width="100%" alt="Avatar" class="imageRoll">
+          <a href="/posts/<%= post.id %>"><img src="<%= Photo.find_by(id: post.photo_id).url %>" height="100%" width="100%" alt="Avatar" class="imageRoll"></a>
           <div class="middle">
             <div class="settingButton">
               <% likecount = [] %>
