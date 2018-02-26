@@ -70,12 +70,18 @@
         <span> Posts</span>
       </div>
       <div class='inBlock'>
-        <span class='strong'><%= followerCount %></span>
-        <span> Followers</span>
+
+        <a class="nav-link" data-toggle="modal" data-target="#followersModal" href="#followersModal">
+          <span class='strong' ><%= followerCount %></span>
+          <span> Followers</span>
+        </a>
+
       </div>
       <div class='inBlock'>
-        <span class='strong'><%= followingCount  %></span>
-        <span> Following</span>
+        <a class="nav-link" data-toggle="modal" data-target="#followingModal" href="#followingModal">
+          <span class='strong'><%= followingCount  %></span>
+          <span> Following</span>
+          </a>
       </div>
     </div>
     <div>
@@ -92,6 +98,8 @@
       </div>
     </div>
 <% else %>
+
+
 
 <div class="container">
   <div class="row">
@@ -132,6 +140,71 @@
     <% end %>
   </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="followersModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Followers</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+    </div>
+    <div class="settingButton">
+      <div class="container">
+      <% @connections.each do |connection| %>
+        <% if @user.id ==  connection.following_id%>
+          <div class="row">
+            <div class="col-lg-2">
+              <a href="/users/<%= connection.user_id %>"><img src="<%= Photo.find_by(id: User.find_by(id: connection.user_id).photo_id).url %>" height="100%" width="100%" alt="Avatar" class="imageRoll"></a>
+            </div>
+            <div class="col-lg-3">
+              <a href="/users/<%= connection.user_id %>"><%= User.find_by(id: connection.user_id).name %></a>
+              <%= User.find_by(id: connection.user_id).username %>
+            </div>
+          </div>
+          <hr>
+        <% end %>
+      <% end %>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="followingModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Following</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+    </div>
+    <div class="settingButton">
+      <div class="container">
+      <% @connections.each do |connection| %>
+        <% if @user.id ==  connection.user_id%>
+          <div class="row">
+            <div class="col-lg-2">
+              <a href="/users/<%= connection.following_id %>"><img src="<%= Photo.find_by(id: User.find_by(id: connection.following_id).photo_id).url %>" height="100%" width="100%" alt="Avatar" class="imageRoll"></a>
+            </div>
+            <div class="col-lg-3">
+              <a href="/users/<%= connection.following_id %>"><%= User.find_by(id: connection.following_id).name %></a>
+              <%= User.find_by(id: connection.following_id).username %>
+            </div>
+          </div>
+          <hr>
+        <% end %>
+      <% end %>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <% end %>
 
 <% else %>

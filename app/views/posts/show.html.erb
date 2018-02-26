@@ -1,74 +1,91 @@
 <% show = 'no' %>
 <div class="container">
   <div class="bodyleft bodyright">
-    <div class="justify-content-around">
+    <div class="postdiv justify-content-around postPadding">
     <% Connection.where(user_id: current_user.id).each do |user| %>
           <% Post.where(id: params[:id]).each do |post| %>
             <% Photo.where(id: post.photo_id).each do |photo| %>
             <% if show == 'no' %>
-            <div class='postdiv'>
-              <div class="postBorderBottom">
-                  <div class="postBorderBottom">
-                    <span class="postImg">
-                      <a href="/users/<%= post.user_id %>"><img class="roundImage" src="<%= Photo.find_by(id: User.find_by(id: post.user_id).photo_id).url %>" height="10%" width="10%"></a>
-                    </span>
-                    <span class="postAuthor">
+              <div class="row">
+                <div class="col-lg-6 inBlock">
+                  <img src="<%= photo.url %>" height="100%" width="100%">
+                </div>
+                <div class="col-lg-5 inBlock">
+                  <div class="row">
+                    <div class="col-lg-4 inBlock">
+                      <a href="/users/<%= post.user_id %>"><img class="roundImage" src="<%= Photo.find_by(id: User.find_by(id: post.user_id).photo_id).url %>" height="auto" width="100%"></a>
+                    </div>
+                    <div class="col-lg-7 inBlock">
                       <a href="/users/<%= post.user_id %>"><%= User.find_by(id: post.user_id).username %></a>
-                    </span>
-                    <p class="postLocation"><%= post.location %></p>
+                      <p><%= post.location %></p>
+                    </div>
                   </div>
-                  <div class="col-lg-12">
-                    <img src="<%= photo.url %>" height="100%" width="100%">
+                  <div>
+                    <a href="/users/<%= post.user_id %>"><%= User.find_by(id: post.user_id).username %></a> <%= post.description %>
                   </div>
-                </div>
-                <div>
-                  <form class="inBlock" action='/likes' method='post'>
-                    <fieldset style="display:none">
-                      <input type="hidden" name="like[user_id]"" value="<%= current_user.id %>">
-                      <input type="hidden" name="like[post_id]"" value="<%= post.id %>">
-                     </fieldset>
-                    <button type="submit" class="nav-link buttons"><i class="far fa-heart"></i></button>
-                  </form>
-                  <span class="postHeart"><a class="nav-link buttons"  href='#commentField<%= post.id %>' ><i class="far fa-comment"></i></a></span>
-                </div>
-
-                <div id="commentField<%= post.id %>" >
-                  <% likecount = [] %>
-                  <% @likes.each do |like| %>
-                    <% if like.post_id == post.id  %>
-                      <% likecount << like.user_id %>
+                  <div>
+                    <% Comment.where(post_id: post.id ).each do |comment| %>
+                    <a href="/users/<%= comment.user_id %>"><%=  User.find_by(id: comment.user_id).username %></a>
+                    <%=  comment.comment %>
+                    <br>
                     <% end %>
-                  <% end %>
-                      <p class="postLikes"><%= likecount.length %> Likes</p>
-                  <% likecount = [] %>
-                </div>
-                <div>
-                  <% commentscount = [] %>
-                    <% @comments.each do |comment| %>
-                      <% if comment.post_id == post.id  %>
-                        <a class="postCommenter" href="/users/<%=  User.find_by(id: comment.user_id).id %>"><%= User.find_by(id: comment.user_id).username %></a>
-                        <%=  comment.comment %>
-                        <br>
-                      <% end %>
-                  <% end %>
-                </div>
-                <span class="postTimeAgo">
-                  <%= time_ago_in_words(post.created_at) %> ago
-                </span>
-                <form action='/comments' method='post'>
-                  <fieldset style="display:none">
-                    <input type="hidden" name="comment[user_id]"" value="<%= current_user.id %>">
-                    <input type="hidden" name="comment[post_id]"" value="<%= post.id %>">
-                   </fieldset>
-                  <fieldset class="form-group">
-                    <input type="text" class="form-control"  name="comment[comment]" placeholder="Add a comment...">
-                   </fieldset>
-                   <input  type="submit" name="update" value=" Apply "
-                   style="position: absolute; height: 0px; width: 0px; border: none; padding: 0px;"
-                   hidefocus="true" tabindex="-1"/>
-                  </form>
-              </div>
+                  </div>
 
+
+                  <div>
+                    <!-- hashtags Todo: -->
+                  </div>
+
+                  <div class="postLikePadd" id="commentField<%= post.id %>">
+                    <div>
+                      <form class="inBlock" action='/likes' method='post'>
+                        <fieldset style="display:none">
+                          <input type="hidden" name="like[user_id]"" value="<%= current_user.id %>">
+                          <input type="hidden" name="like[post_id]"" value="<%= post.id %>">
+                         </fieldset>
+                        <button type="submit" class="nav-link buttons"><i class="far fa-heart"></i></button>
+                      </form>
+                      <span class="postHeart"><a class="nav-link buttons"  href='#commentField<%= post.id %>' ><i class="far fa-comment"></i></a></span>
+                    </div>
+                    <div>
+                      <!-- Likes List by username ending with a comma,  -->
+                      <% likecount = [] %>
+                      <% likeUsername = [] %>
+                      <% @likes.each do |like| %>
+                        <% if like.post_id == post.id  %>
+                        <% likecount << like.user_id %>
+                          <% likeUsername << User.find_by(id: like.user_id).username %>
+                        <% end %>
+                      <% end %>
+                          <p class="postLikes"><%= likecount.length %> Likes</p>
+                          <p class="postLikes"><%= likeUsername.split(' ').join(', ') %></p>
+                      <% likecount = [] %>
+                      <% likeUsername = [] %>
+                    </div>
+
+                    <div>
+                      <span class="postTimeAgo">
+                        <%= time_ago_in_words(post.created_at) %> ago
+                      </span>
+                    </div>
+
+                    <div>
+                      <form action='/comments' method='post'>
+                        <fieldset style="display:none">
+                          <input type="hidden" name="comment[user_id]"" value="<%= current_user.id %>">
+                          <input type="hidden" name="comment[post_id]"" value="<%= post.id %>">
+                         </fieldset>
+                        <fieldset class="form-group">
+                          <input type="text" class="form-control"  name="comment[comment]" placeholder="Add a comment...">
+                         </fieldset>
+                         <input  type="submit" name="update" value=" Apply "
+                         style="position: absolute; height: 0px; width: 0px; border: none; padding: 0px;"
+                         hidefocus="true" tabindex="-1"/>
+                        </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <% show = 'yes' %>
             <% end %>
             <% end %>

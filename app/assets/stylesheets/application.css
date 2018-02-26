@@ -65,7 +65,7 @@ nav{
 
 .postBorderBottom{
   border-style: solid;
-  border-width: 0px 0px 1px 0px;
+  border-width: 1px 0px 0px 0px;
   border-color: #e6e6e6;
 }
 
@@ -302,4 +302,14 @@ nav{
       border-width: 1px 0px 0px 0px;
       border-color: #e6e6e6;
       background-color:transparent !important;
+}
+
+.postLikePadd{
+  padding-top: 25%
+}
+
+
+.postPadding{
+  padding-top: 5%;
+  padding-left: 5%;
 }
