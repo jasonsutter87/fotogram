@@ -10,6 +10,6 @@ class CommentsController < ApplicationController
       post_id: params['comment']['post_id'],
       user_id: params['comment']['user_id'],
       comment: params['comment']['comment'])
-    redirect_to "/feed"
+    redirect_to request.referrer
   end
 end

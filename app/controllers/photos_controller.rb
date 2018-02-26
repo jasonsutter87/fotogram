@@ -6,7 +6,7 @@ class PhotosController < ApplicationController
 
   def create
     Photo.create(url: params[:url])
-    redirect_to "/feed"
+    redirect_to request.referrer
   end
 
 end

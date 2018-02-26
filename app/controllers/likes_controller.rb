@@ -9,6 +9,6 @@ class LikesController < ApplicationController
     Like.create(
       post_id: params['like']['post_id'],
       user_id: params['like']['user_id'])
-    redirect_to "/feed"
+    redirect_to request.referrer
   end
 end

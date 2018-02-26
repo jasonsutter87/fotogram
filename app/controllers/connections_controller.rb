@@ -19,7 +19,7 @@ class ConnectionsController < ApplicationController
     Connection.destroy(connection.id)
     user = User.find(params[:id])
 
-    redirect_to "/feed"
+    redirect_to request.referrer
  end
 
 end
