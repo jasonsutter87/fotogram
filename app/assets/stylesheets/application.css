@@ -36,12 +36,21 @@ nav{
 }
 
 .bodyleft{
-  padding-left: 10%;
+  padding-left: 20%;
 }
 
 
 .bodyright{
-  padding-right: 6%;
+  padding-right: 15%;
+}
+
+.postleft{
+  padding-left: 5%;
+}
+
+
+.postright{
+  padding-right: 5%;
 }
 
 .buttons{
