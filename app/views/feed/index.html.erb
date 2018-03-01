@@ -9,7 +9,17 @@
                   <div class="postBorderBottom">
                       <div class="postBorderBottom">
                         <span class="postImg">
-                          <a href="/users/<%= post.user_id %>"><img src="<%= Photo.find_by(id: User.find_by(id: post.user_id).photo_id).url %>" height="10%" width="10%"></a>
+                          <!-- <a href="/users/<%= post.user_id %>"><img src="<%= Photo.find_by(id: User.find_by(id: post.user_id).photo_id).url %>" height="10%" width="10%"></a> -->
+
+                          <% if post.user_id > 25 && post.user_id != 51 %>
+                            <a href="/users/<%= post.user_id %>"><img src="https://randomuser.me/api/portraits/women/<%= post.user_id %>.jpg" height="10%" width="10%" class="roundImage"></a>
+
+                          <% elsif post.user_id != 51%>
+                            <a href="/users/<%= post.user_id %>"><img src="https://randomuser.me/api/portraits/men/<%= post.user_id %>.jpg" height="10%" width="10%" class="roundImage"></a>
+
+                          <% end %>
+
+                  
                         </span>
                         <span class="postAuthor">
                           <a href="/users/<%= post.user_id %>"><%= User.find_by(id: post.user_id).username %></a>
@@ -17,7 +27,7 @@
                         <p class="postLocation"><%= post.location %></p>
                       </div>
                       <div class="col-lg-12">
-                        <img src="<%= photo.url %>" height="100%" width="100%">
+                        <img src="https://picsum.photos/600/600?image=<%= post.id %>" height="100%" width="100%">
                       </div>
                     </div>
                     <div>

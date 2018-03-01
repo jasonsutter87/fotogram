@@ -26,7 +26,16 @@
   <div class="displayPhoto">
 
     <% if @user.photo_id !=  nil %>
-      <img class="roundImage" src="<%= Photo.find_by(id: @user.photo_id).url %>" height="75" width="75">
+      <% if @user.id == current_user.id %>
+
+        <img class="roundImage" src="<%= Photo.find_by(id: @user.photo_id).url %>" height="75" width="75">
+      <% elsif @user.id > 25  %>
+        <img src="https://randomuser.me/api/portraits/women/<%= @user.id  %>.jpg" alt="Avatar" class="roundImage" height="75" width="75">
+
+      <% else %>
+        <img src="https://randomuser.me/api/portraits/men/<%= @user.id  %>.jpg" alt="Avatar" class="roundImage" height="75" width="75">
+
+      <% end %>
     <% else %>
       <img class="roundImage" src="https://robohash.org/'+#{ @user.username}+'?set=set3>" height="75" width="75">
     <% end %>
@@ -106,7 +115,8 @@
       <% Post.where(user_id: @user.id).each do | post | %>
       <div class="col-lg-4">
         <div class="postContainer">
-          <a href="/posts/<%= post.id %>"><img src="<%= Photo.find_by(id: post.photo_id).url %>" height="100%" width="100%" alt="Avatar" class="imageRoll"></a>
+          <!-- <a href="/posts/<%= post.id %>"><img src="https://picsum.photos/600/600?image=<%= Photo.find_by(id: post.photo_id).id %>" height="100%" width="100%" alt="Avatar" class="imageRoll"></a> -->
+          <a href="/posts/<%= post.id %>"><img src="https://picsum.photos/600/600?image=<%= post.id %>" height="100%" width="100%" alt="Avatar" class="imageRoll"></a>
           <div class="middle">
             <div class="settingButton">
               <% likecount = [] %>

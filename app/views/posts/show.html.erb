@@ -1,19 +1,32 @@
 <% show = 'no' %>
 <div class="container">
-  <div class="bodyleft bodyright">
-    <div class="postdiv justify-content-around postPadding">
+  <div class="postleft postright">
+    <div class="postdiv postPadding">
     <% Connection.where(user_id: current_user.id).each do |user| %>
           <% Post.where(id: params[:id]).each do |post| %>
             <% Photo.where(id: post.photo_id).each do |photo| %>
             <% if show == 'no' %>
               <div class="row">
                 <div class="col-lg-6 inBlock">
-                  <img src="<%= photo.url %>" height="100%" width="100%">
+                  <img src="https://picsum.photos/600/600?image=<%= post.id %>" height="100%" width="100%">
                 </div>
                 <div class="col-lg-5 inBlock">
                   <div class="row">
                     <div class="col-lg-4 inBlock">
-                      <a href="/users/<%= post.user_id %>"><img class="roundImage" src="<%= Photo.find_by(id: User.find_by(id: post.user_id).photo_id).url %>" height="auto" width="100%"></a>
+
+                        <% if post.user_id == current_user.id %>
+                          <a href="/users/<%= post.user_id %>"><img class="roundImage" src="<%= Photo.find_by(id: User.find_by(id: post.user_id).photo_id).url %>" height="auto" width="100%"></a>
+
+                        <% elsif post.user_id > 25  &&  post.user_id != current_user.id %>
+                          <a href="/users/<%= post.user_id %>"><img src="https://randomuser.me/api/portraits/women/<%=  post.user_id  %>.jpg" alt="Avatar" class="roundImage" height="auto" width="100%"></a>
+
+                        <% else %>
+                          <a href="/users/<%= post.user_id %>"><img src="https://randomuser.me/api/portraits/men/<%=  post.user_id  %>.jpg" alt="Avatar" class="roundImage" height="auto" width="100%" ></a>
+
+                        <% end %>
+
+
+
                     </div>
                     <div class="col-lg-7 inBlock">
                       <a href="/users/<%= post.user_id %>"><%= User.find_by(id: post.user_id).username %></a>

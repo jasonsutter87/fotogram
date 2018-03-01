@@ -1,7 +1,7 @@
 <% if user_signed_in? %>
   <div class="bodyleft bodyright ">
 
-    <p>Discover People</p>
+    <h1>Discover People</h1>
     <div class="container">
       <div class="row">
         <% user1 = rand(51) %>
@@ -17,7 +17,14 @@
 
       <div class="col-lg-4">
         <div class="whiteBg center padDown">
-            <a href="/users/<%= user1 %>"><img src="<%= Photo.find_by(id: User.find_by(id: user1).photo_id).url %>" alt="Avatar" class="roundImageDiscover"></a><br>
+
+            <% if user1 > 25 && user1 != 51 %>
+              <a href="/users/<%= user1 %>"><img src="https://randomuser.me/api/portraits/women/<%= user1 %>.jpg" alt="Avatar" class="roundImageDiscover"></a><br>
+
+            <% elsif user1 != 51%>
+              <a href="/users/<%= user1 %>"><img src="https://randomuser.me/api/portraits/men/<%= user1 %>.jpg" alt="Avatar" class="roundImageDiscover"></a><br>
+
+            <% end %>
             <p class="bold postAuthor"><a href="/users/<%= user1 %>"><%= User.find_by(id: user1).username %></a></p>
             <p><%= User.find_by(id: user1).name %></p>
             <form action='/connections' method='post'>
@@ -33,7 +40,13 @@
 
       <div class="col-lg-4">
         <div class="whiteBg center padDown">
-            <a href="/users/<%= user2 %>"><img src="<%= Photo.find_by(id: User.find_by(id: user2).photo_id).url %>" alt="Avatar" class="roundImageDiscover"></a><br>
+          <% if user2 > 25 && user2 != 51 %>
+            <a href="/users/<%= user2 %>"><img src="https://randomuser.me/api/portraits/women/<%= user2 %>.jpg" alt="Avatar" class="roundImageDiscover"></a><br>
+
+          <% elsif user2 != 51%>
+            <a href="/users/<%= user2 %>"><img src="https://randomuser.me/api/portraits/men/<%= user2 %>.jpg" alt="Avatar" class="roundImageDiscover"></a><br>
+
+          <% end %>
             <p class="bold postAuthor"><a href="/users/<%= user2 %>"><%= User.find_by(id: user2).username %></a></p>
             <p><%= User.find_by(id: user2).name %></p>
             <form action='/connections' method='post'>
@@ -48,7 +61,13 @@
 
       <div class="col-lg-4">
         <div class="whiteBg center padDown">
-          <a href="/users/<%= user3 %>"><img src="<%= Photo.find_by(id: User.find_by(id: user3).photo_id).url %>" alt="Avatar" class="roundImageDiscover"></a><br>
+          <% if user3 > 25 && user3 != 51 %>
+            <a href="/users/<%= user3 %>"><img src="https://randomuser.me/api/portraits/women/<%= user3 %>.jpg" alt="Avatar" class="roundImageDiscover"></a><br>
+
+          <% elsif user3 != 51%>
+            <a href="/users/<%= user3 %>"><img src="https://randomuser.me/api/portraits/men/<%= user3 %>.jpg" alt="Avatar" class="roundImageDiscover"></a><br>
+
+          <% end %>
           <p class="bold postAuthor"><a href="/users/<%= user3 %>"><%= User.find_by(id: user3).username %></a></p>
           <p><%= User.find_by(id: user3).name %></p>
           <form action='/connections' method='post'>
@@ -64,14 +83,15 @@
     </div>
 
 
-    <p>explore</p>
+    <h1>Explore</h1>
     <div class="container">
       <div class="row">
         <% @posts.shuffle.each do |post| %>
           <% if post.user_id != current_user.id %>
             <div class="col-lg-4">
               <div class="postContainer">
-                  <a href="/posts/<%= post.id %>"><img src="<%= Photo.find_by(id: post.photo_id).url %>" alt="Avatar" class="imageRoll"></a>
+                <!-- <a href="/posts/<%= post.id %>"><img src="<%= Photo.find_by(id: post.photo_id).url %>" alt="Avatar" class="imageRoll"></a> -->
+                  <a href="/posts/<%= post.id %>"><img src="https://picsum.photos/600/600?image=<%= post.id %>" alt="Avatar" class="imageRoll"></a>
                 <div class="middle">
                   <div class="settingButton">
                     <% likecount = [] %>
