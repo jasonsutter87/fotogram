@@ -1,10 +1,10 @@
-# Fotogram:
+# Fotogramm:
 
 ## Instagram Clone
 
 A social CRUD Application.
 
-Built in Ruby on Rails, Fotogram allows people to connect with friends and view into their lives through photos
+Built in Ruby on Rails, Fotogramm allows people to connect with friends and view into their lives through photos
 
 You can can follow users, and see their images on your feed. You can discover and explore new users, and have your own on-line life via photography.
 
@@ -47,11 +47,11 @@ You can can follow users, and see their images on your feed. You can discover an
 1. Download zip or clone directory
 2. Change into the directory in terminal
 
-  `cd fotogram`
+  `cd fotogramm`
 3. Run Application
 
   `rails s`
 
 4. Create a new user or use my login
-  * Email: 'jason@fotogram.com'
-  * password: 'fotogram'
+  * Email: 'jason@fotogramm.com'
+  * password: 'fotogramm'
