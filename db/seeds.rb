@@ -26,7 +26,7 @@ end
 
 #Create 50 Posts
 50.times do
-  Post.create(user_id: rand(1..20), filter_id: rand(1..10), filter_opacity: rand(0.0..1.0).round(2), photo_id: rand(25..50), description: Faker::Lorem.sentence, location: Faker::Address.city)
+  Post.create(user_id: rand(1..45), filter_id: rand(1..10), filter_opacity: rand(0.0..1.0).round(2), photo_id: rand(25..50), description: Faker::Lorem.sentence, location: Faker::Address.city)
 end
 
 
