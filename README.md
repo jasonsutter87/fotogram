@@ -23,7 +23,7 @@ You can can follow users, and see their images on your feed. You can discover an
 ![alt tag](https://imgur.com/nHXCZva.png)
 
 ##  Explore and discover new amazing users
-![alt tag](https://imgur.com/C2HZLB1.png)
+![alt tag](https://imgur.com/zTbldlq.png)
 
 ## Schema:
 ![alt tag](https://imgur.com/bdWiyRr.png)
