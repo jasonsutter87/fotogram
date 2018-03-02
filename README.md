@@ -12,13 +12,13 @@ You can can follow users, and see their images on your feed. You can discover an
 
 # Other features include:
 ##  Devise Authentication
-![alt tag](https://i.imgur.com/oHulXX6.png)
+![alt tag](https://imgur.com/3QC6Qwa.png)
 ##  Beautiful Design with Instagram's help
-![alt tag](https://i.imgur.com/51Tym8D.png)
+![alt tag](https://imgur.com/TLfuBA5.png)
 ##  Visualization in a person's Life
-![alt tag](https://imgur.com/aBdLV6Q.png)
+![alt tag](https://imgur.com/jkaNa01.png)
 ##  Remembrance of a great memory
-![alt tag](https://imgur.com/BdbJFVs.png)
+![alt tag](https://imgur.com/nHXCZva.png)
 
 ##  Explore and discover new amazing users
 ![alt tag](https://imgur.com/C2HZLB1.png)

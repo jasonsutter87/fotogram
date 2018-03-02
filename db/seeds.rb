@@ -45,7 +45,7 @@ end
 end
 
 Photo.create(url: "https://avatars2.githubusercontent.com/u/12101475?s=400&u=ef6c23f12f4a03a1a9d0992625399f9a1532dc92&v=4")
-User.create(name: 'Jason Sutter', username: 'jasonsutter87' , bio: 'Tacos everyday!',  photo_id: 81, email: 'jason@fotogram.com', password: 'fotogram' )
+User.create(name: 'Jason Sutter', username: 'jasonsutter87' , bio: 'Tacos everyday!',  photo_id: 81, email: 'jason@fotogramm.com', password: 'fotogramm' )
 Post.create(user_id: 51, filter_id: rand(1..10), filter_opacity: rand(0.0..1.0).round(2), photo_id: 51, description: Faker::Lorem.sentence, location: 'Sacramento, CA')
 Post.create(user_id: 51, filter_id: rand(1..10), filter_opacity: rand(0.0..1.0).round(2), photo_id: 52, description: Faker::Lorem.sentence, location: 'Sacramento, CA')
 Post.create(user_id: 51, filter_id: rand(1..10), filter_opacity: rand(0.0..1.0).round(2), photo_id: 53, description: Faker::Lorem.sentence, location: 'Sacramento, CA')
