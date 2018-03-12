@@ -36,6 +36,9 @@ You can can follow users, and see their images on your feed. You can discover an
 * Randomuser.me/api
 
 ## TODOS:
+* Padding on feed
+* Followers Images mock
+* Implement Following Modal
 * Implement a search field in nav-bar
 * Implement Photo upload with paper-clip and S3
 * Implement Photo filters
